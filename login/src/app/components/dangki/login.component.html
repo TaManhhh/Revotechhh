@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="form">
+    <form [formGroup]="signInForm" class="example-form" >
+       <!-- #f="ngForm" (ngSubmit)="onSubmit(f)" -->
+      <mat-form-field  class="example-full-width" appearance="fill">
+        <mat-label>Họ Và Tên</mat-label>
+        <input formControlName="name" matInput placeholder="Tên của bạn" matInput name="tennguoidung"  required minlength="6" >
+        <mat-error >
+          Tên người dùng không được bỏ trống
+      </mat-error>
+      </mat-form-field>
+
+
+      <!-- Email -->
+      <mat-form-field class="example-full-width" appearance="fill"  >
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="Email của bạn" matInput type="email" name="email"  required minlength="6"
+          >
+          <mat-error >
+            Email không được để trống
+        </mat-error>
+
+      </mat-form-field>
+
+      <!-- Adress -->
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Địa chỉ</mat-label>
+        <input  formControlName="address" matInput placeholder="Your Address" name="diachi"  required >
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Mật khẩu</mat-label>
+        <input matInput  formControlName="password" placeholder="Your Password" type="password" aria-describedby="passwordHid" name="matkhau"
+           required required minlength="6" password="">
+           <mat-error >
+            Mật khẩu không được để trống
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill" >
+        <mat-label>Số điện thoại</mat-label>
+        <input formControlName="number" matInput placeholder="Nhập số điện thoại" type="number" name="sodt"  required minlength="10"
+          maxlength="10">
+
+      </mat-form-field>
+
+      <div class="Date" >
+        <p>Giới tính :</p>
+        <mat-form-field  >
+
+          <mat-select (selectionChange)="selectedGender($event)" [(value)]="selected">
+
+            <mat-option value="nam">Nam</mat-option>
+            <mat-option value="nu">Nữ</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+      <div class="Date">
+        <p>Ngày tốt nghiệp</p>
+        <mat-form-field appearance="fill" formControlName="dateTime" >
+          <mat-date-range-input [formGroup]="date" [rangePicker]="picker">
+            <input matStartDate placeholder="Bắt đầu từ" #dateRangeStart>
+            <input matEndDate  placeholder="Tốt nghiệp" #dateRangeEnd (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+          </mat-date-range-input>
+          <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+
+          <mat-error *ngIf="date.controls.startGraduate.hasError('matStartDateInvalid')">Ngày bắt đầu không được bỏ trống
+          </mat-error>
+          <mat-error *ngIf="date.controls. endGraduate.hasError('matEndDateInvalid')">Không được bỏ trống ngày tốt nghiệp
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+
+
+      <div class="example-button-row">
+        <button (click)="onSubmit()" mat-raised-button color="accent" class="fuse-mat-button-large w-full mt-6" mat-flat-button
+          [color]="'primary'" >Submit</button>
+      </div>
+
+    </form>
+  </div>
+</div>
